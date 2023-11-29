@@ -1,6 +1,6 @@
 // popup.js
 
-// Selecting the tab where the message will be displayed
+// Selecting the tab where the message will be displayed (the one I am currently viewing)
 function sendCheesifyMsg() {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     // Finds tabs that are active in the current window
