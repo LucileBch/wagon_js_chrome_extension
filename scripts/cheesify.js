@@ -1,7 +1,7 @@
-// cheesify function making image replacement
+// cheesify.js
 
+// Image replacement script
 function cheesify() {
-  // TODO: Add the image replacement script here
   document.querySelectorAll("img").forEach((img) => {
     img.src = `https://source.unsplash.com/collection/8884129/${img.width}x${
       img.height
@@ -10,4 +10,9 @@ function cheesify() {
   });
 }
 
-// TODO: Write a function to listen for messages on the content page using chrome.runtime.onMessage
+// Event listener that triggers action from popup.js in the tab
+// Listening for messages on the content page using chrome.runtime.onMessage
+// request : calling action in popup.js file
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.action === "cheesify") cheesify();
+});
