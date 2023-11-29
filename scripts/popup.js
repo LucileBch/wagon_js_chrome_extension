@@ -1,12 +1,17 @@
+// popup.js
+
+//
 function sendCheesifyMsg() {
-  // TODO: Write a function to send a message to the active tab to 'cheesify' it
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    // Finds tabs that are active in the current window
+    chrome.tabs.sendMessage(tabs[0].id, { action: "cheesify" }); // Get the id of the current tab and Sends a message (object) to the first tab (tabs[0])
+  });
 }
 
-// TODO: Add an event listener to trigger the function above when clicking the 'Cheesify' button
 // Selecting the cheese button
 const cheesifyButton = document.querySelector("#cheesify");
 
-// Adding an event listener : when click =>
+// Adding an event listener : clicks trigger sendCheesifyMsg function
 cheesifyButton.addEventListener("click", (event) => {
-  alert("Cheesify button clicked");
+  sendCheesifyMsg();
 });
